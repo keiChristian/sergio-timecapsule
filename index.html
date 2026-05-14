@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergio's Time Capsule — Hart High School</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1e3a1f;
+    --green-mid: #2d5230;
+    --green-light: #4a7c4e;
+    --green-pale: #c8e6c9;
+    --cream: #faf7f2;
+    --cream-dark: #f0ebe0;
+    --bark: #5c3d1e;
+    --bark-light: #8b6340;
+    --stone: #9e9e8a;
+    --stone-light: #e8e6de;
+    --text-dark: #1a1a14;
+    --text-mid: #4a4a3a;
+    --text-soft: #7a7a6a;
+    --gold: #c8a04a;
+    --rust: #b05a2a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--green-dark);
+    border-bottom: 2px solid var(--green-mid);
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; color: var(--green-pale);
+    padding: 14px 0; white-space: nowrap;
+  }
+  .nav-links {
+    display: flex; gap: 2px; list-style: none;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    display: block; padding: 14px 14px;
+    font-size: 13px; font-weight: 600;
+    color: rgba(200,230,201,0.7);
+    text-decoration: none; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--green-pale); }
+  .nav-links a.active {
+    border-bottom: 2px solid var(--gold);
+    color: #fff;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--green-dark);
+    padding: 72px 40px 60px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(74,124,78,0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(200,160,74,0.08) 0%, transparent 40%);
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 700;
+    margin-bottom: 16px; position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 400; line-height: 1.15;
+    color: #fff; position: relative;
+    margin-bottom: 12px;
+  }
+  .hero h1 em { font-style: italic; color: var(--green-pale); }
+  .hero-sub {
+    font-size: 15px; color: rgba(255,255,255,0.55);
+    font-weight: 300; position: relative;
+  }
+
+  /* PAGE BODY */
+  .page-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* SECTION LABEL */
+  .sec-label {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--stone);
+    margin-bottom: 16px; margin-top: 40px;
+  }
+  .sec-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: var(--stone-light);
+  }
+  .sec-label:first-child { margin-top: 0; }
+
+  /* CARDS */
+  .card {
+    background: #fff;
+    border: 1px solid var(--stone-light);
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 400;
+    color: var(--text-dark); margin-bottom: 14px;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* PLACEHOLDER TEXT */
+  .ph {
+    font-size: 13px; color: var(--stone);
+    font-style: italic; line-height: 1.7;
+    background: var(--cream-dark);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .ph-inline {
+    color: var(--stone); font-style: italic;
+  }
+
+  /* FRIEND PILLS */
+  .friend-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .friend-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--cream-dark);
+    border: 1px solid var(--stone-light);
+    border-radius: 24px; padding: 6px 14px 6px 8px;
+    font-size: 13px; font-weight: 600; color: var(--text-mid);
+  }
+  .friend-av {
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+  }
+
+  /* SCHEDULE */
+  .schedule { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .schedule tr { border-bottom: 1px solid var(--stone-light); }
+  .schedule tr:last-child { border-bottom: none; }
+  .schedule td { padding: 9px 4px; }
+  .schedule td:first-child {
+    color: var(--stone); font-size: 11px;
+    font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; width: 80px;
+  }
+  .schedule td:last-child { color: var(--text-mid); font-weight: 600; }
+
+  /* PLAYLIST */
+  .track {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid var(--stone-light);
+  }
+  .track:last-child { border-bottom: none; }
+  .track-n {
+    font-size: 11px; color: var(--stone);
+    min-width: 18px; text-align: center;
+  }
+  .track-disc {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--green-dark);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .track-disc::after {
+    content: ''; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--green-pale);
+  }
+  .track-info { flex: 1; }
+  .track-title { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+  .track-artist { font-size: 12px; color: var(--stone); }
+
+  /* HARDSHIPS */
+  .hardship {
+    border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 12px; border-left: 4px solid;
+  }
+  .hardship-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .hardship-text { font-size: 13px; line-height: 1.7; }
+
+  /* YEAR COLOR SCHEMES */
+  .y1 .hero { background: linear-gradient(135deg, #1e3a1f 0%, #2d5230 100%); }
+  .y1 .hardship { background: #f0f7f0; border-color: #4a7c4e; }
+  .y1 .hardship-label { color: #2d5230; }
+  .y1 .hardship-text { color: #3a5c3c; }
+
+  .y2 .hero { background: linear-gradient(135deg, #3d2010 0%, #6b3820 100%); }
+  .y2 .hero-eyebrow { color: #FAC775; }
+  .y2 .hero h1 em { color: #faeeda; }
+  .y2 .friend-av { background: #faeeda; color: #854F0B; }
+  .y2 .track-disc { background: #6b3820; }
+  .y2 .track-disc::after { background: #faeeda; }
+  .y2 .hardship { background: #fdf6ee; border-color: #BA7517; }
+  .y2 .hardship-label { color: #854F0B; }
+  .y2 .hardship-text { color: #6b4010; }
+
+  .y3 .hero { background: linear-gradient(135deg, #0c2a4a 0%, #185FA5 100%); }
+  .y3 .hero-eyebrow { color: #B5D4F4; }
+  .y3 .hero h1 em { color: #e6f1fb; }
+  .y3 .friend-av { background: #e6f1fb; color: #185FA5; }
+  .y3 .track-disc { background: #0c2a4a; }
+  .y3 .track-disc::after { background: #B5D4F4; }
+  .y3 .hardship { background: #eef5fc; border-color: #378ADD; }
+  .y3 .hardship-label { color: #185FA5; }
+  .y3 .hardship-text { color: #0c3460; }
+
+  .y4 .hero { background: linear-gradient(135deg, #1a1030 0%, #3C3489 100%); }
+  .y4 .hero-eyebrow { color: #CECBF6; }
+  .y4 .hero h1 em { color: #EEEDFE; }
+  .y4 .friend-av { background: #EEEDFE; color: #534AB7; }
+  .y4 .track-disc { background: #1a1030; }
+  .y4 .track-disc::after { background: #CECBF6; }
+  .y4 .hardship { background: #f2f1fe; border-color: #7F77DD; }
+  .y4 .hardship-label { color: #534AB7; }
+  .y4 .hardship-text { color: #3C3489; }
+
+  /* LEGACY PAGE */
+  .legacy-hero {
+    background: linear-gradient(135deg, #1a1a14 0%, #2d2d20 100%);
+    border-radius: 0;
+    padding: 72px 40px 60px;
+    text-align: center;
+  }
+  .legacy-section {
+    background: #fff;
+    border: 1px solid var(--stone-light);
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .legacy-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 400;
+    color: var(--text-dark); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .legacy-section h3::before {
+    content: ''; width: 4px; height: 20px;
+    background: var(--gold); border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .shoutout {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--stone-light);
+  }
+  .shoutout:last-child { border-bottom: none; }
+  .shoutout-av {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #EEEDFE; color: #534AB7;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .shoutout-name { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+  .shoutout-reason { font-size: 12px; color: var(--stone); font-style: italic; }
+  .advice-item {
+    display: flex; gap: 12px; padding: 10px 0;
+    border-bottom: 1px solid var(--stone-light);
+    font-size: 13px; line-height: 1.6; color: var(--text-mid);
+  }
+  .advice-item:last-child { border-bottom: none; }
+  .advice-num {
+    font-weight: 700; color: var(--gold);
+    min-width: 20px; font-size: 15px;
+  }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    background: var(--green-dark);
+    border-radius: 16px; padding: 32px;
+    text-align: center; margin: 24px 0;
+  }
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px; color: rgba(200,230,201,0.2);
+    line-height: 0.6; margin-bottom: 16px;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 18px;
+    color: #fff; line-height: 1.7;
+  }
+  .quote-attr { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 14px; letter-spacing: 1px; }
+
+  /* HOME STAT CARDS */
+  .stat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 24px; }
+  .stat-card {
+    background: #fff; border: 1px solid var(--stone-light);
+    border-radius: 14px; padding: 20px;
+    text-align: center;
+  }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--green-dark); }
+  .stat-lbl { font-size: 12px; color: var(--stone); margin-top: 4px; font-weight: 600; letter-spacing: 0.5px; }
+
+  /* YEAR NAV STRIP */
+  .year-strip {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 10px;
+    margin-bottom: 0;
+  }
+  .year-tile {
+    border-radius: 12px; padding: 14px;
+    text-decoration: none; display: block;
+    transition: transform 0.15s;
+  }
+  .year-tile:hover { transform: translateY(-2px); }
+  .year-tile-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .year-tile-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 400; }
+  .year-tile-years { font-size: 11px; margin-top: 3px; }
+  .yt1 { background: #e8f5e9; }
+  .yt1 .year-tile-label { color: #2d5230; }
+  .yt1 .year-tile-title { color: #1e3a1f; }
+  .yt1 .year-tile-years { color: #4a7c4e; }
+  .yt2 { background: #fdf3e3; }
+  .yt2 .year-tile-label { color: #854F0B; }
+  .yt2 .year-tile-title { color: #3d2010; }
+  .yt2 .year-tile-years { color: #BA7517; }
+  .yt3 { background: #e3f1fc; }
+  .yt3 .year-tile-label { color: #185FA5; }
+  .yt3 .year-tile-title { color: #0c2a4a; }
+  .yt3 .year-tile-years { color: #378ADD; }
+  .yt4 { background: #eeecfd; }
+  .yt4 .year-tile-label { color: #534AB7; }
+  .yt4 .year-tile-title { color: #1a1030; }
+  .yt4 .year-tile-years { color: #7F77DD; }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-dark);
+    text-align: center; padding: 28px;
+    font-size: 12px; color: rgba(200,230,201,0.4);
+    letter-spacing: 1px;
+  }
+  footer span { color: rgba(200,230,201,0.7); }
+
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .year-strip { grid-template-columns: repeat(2,1fr); }
+    .stat-grid { grid-template-columns: repeat(3,1fr); }
+    .page-body { padding: 28px 16px 60px; }
+    .hero { padding: 48px 20px 40px; }
+    nav { padding: 0 14px; }
+    .nav-brand { font-size: 13px; }
+    .nav-links a { padding: 14px 10px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Sergio · Hart HS</div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="freshman.html">Freshman</a></li>
+    <li><a href="sophomore.html">Sophomore</a></li>
+    <li><a href="junior.html">Junior</a></li>
+    <li><a href="senior.html">Senior</a></li>
+    <li><a href="legacy.html">Legacy</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Hart High School · Class of 2026</div>
+  <h1>Welcome to <em>Sergio's</em><br>Time Capsule</h1>
+  <p class="hero-sub">Sergio David Garcia Calderon · Four years of growth, grit, and good times</p>
+</div>
+
+<div class="page-body">
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">Years at Hart</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">6</div>
+      <div class="stat-lbl">Chapters</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2026</div>
+      <div class="stat-lbl">Graduation</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Welcome</div>
+  <div class="card">
+    <div class="card-title">A note to whoever's reading this</div>
+    <p class="ph">[ Write your welcome message here. Hey, future Sergio — or whoever's reading this. This is a snapshot of who I was during the four most memorable years of my life... ]</p>
+  </div>
+
+  <div class="sec-label">The journey</div>
+  <div class="year-strip">
+    <a href="freshman.html" class="year-tile yt1">
+      <div class="year-tile-label">Freshman</div>
+      <div class="year-tile-title">Finding my footing</div>
+      <div class="year-tile-years">2022 – 2023</div>
+    </a>
+    <a href="sophomore.html" class="year-tile yt2">
+      <div class="year-tile-label">Sophomore</div>
+      <div class="year-tile-title">Getting comfortable</div>
+      <div class="year-tile-years">2023 – 2024</div>
+    </a>
+    <a href="junior.html" class="year-tile yt3">
+      <div class="year-tile-label">Junior</div>
+      <div class="year-tile-title">The grind season</div>
+      <div class="year-tile-years">2024 – 2025</div>
+    </a>
+    <a href="senior.html" class="year-tile yt4">
+      <div class="year-tile-label">Senior</div>
+      <div class="year-tile-title">The final chapter</div>
+      <div class="year-tile-years">2025 – 2026</div>
+    </a>
+  </div>
+
+  <div class="quote-block" style="margin-top:24px">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">[ Add a quote that meant something to you in high school — a lyric, something a friend said, or something you told yourself. ]</div>
+    <div class="quote-attr">— Sergio David Garcia Calderon</div>
+  </div>
+
+</div>
+
+<footer>
+  Sergio David Garcia Calderon · Hart High School · <span>Class of 2026</span>
+</footer>
+
+</body>
+</html>

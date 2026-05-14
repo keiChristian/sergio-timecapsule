@@ -1,0 +1,12 @@
+SHARED NAV HTML (same for all year pages, just change active link):
+<nav>
+  <div class="nav-brand">Sergio · Hart HS</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="freshman.html" [ACTIVE_FRESHMAN]>Freshman</a></li>
+    <li><a href="sophomore.html" [ACTIVE_SOPHOMORE]>Sophomore</a></li>
+    <li><a href="junior.html" [ACTIVE_JUNIOR]>Junior</a></li>
+    <li><a href="senior.html" [ACTIVE_SENIOR]>Senior</a></li>
+    <li><a href="legacy.html" [ACTIVE_LEGACY]>Legacy</a></li>
+  </ul>
+</nav>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freshman Year — Sergio's Time Capsule</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--green-dark:#1e3a1f;--green-mid:#2d5230;--green-light:#4a7c4e;--green-pale:#c8e6c9;--cream:#faf7f2;--cream-dark:#f0ebe0;--stone:#9e9e8a;--stone-light:#e8e6de;--text-dark:#1a1a14;--text-mid:#4a4a3a;--gold:#c8a04a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh}
+  nav{position:sticky;top:0;z-index:100;background:var(--green-dark);border-bottom:2px solid var(--green-mid);padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+  .nav-brand{font-family:'Playfair Display',serif;font-size:16px;color:var(--green-pale);padding:14px 0;white-space:nowrap}
+  .nav-links{display:flex;gap:2px;list-style:none;flex-wrap:wrap}
+  .nav-links a{display:block;padding:14px 14px;font-size:13px;font-weight:600;color:rgba(200,230,201,0.7);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--green-pale)}
+  .nav-links a.active{border-bottom:2px solid var(--gold);color:#fff}
+  .hero{background:linear-gradient(135deg,#1e3a1f 0%,#2d5230 100%);padding:72px 40px 60px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(74,124,78,0.15) 0%,transparent 50%)}
+  .hero-eyebrow{display:inline-block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:16px;position:relative}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;line-height:1.15;color:#fff;position:relative;margin-bottom:12px}
+  .hero h1 em{font-style:italic;color:var(--green-pale)}
+  .hero-sub{font-size:15px;color:rgba(255,255,255,0.55);font-weight:300;position:relative}
+  .page-body{max-width:860px;margin:0 auto;padding:40px 24px 80px}
+  .sec-label{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:16px;margin-top:40px}
+  .sec-label::after{content:'';flex:1;height:1px;background:var(--stone-light)}
+  .sec-label:first-child{margin-top:0}
+  .card{background:#fff;border:1px solid var(--stone-light);border-radius:16px;padding:24px 26px;margin-bottom:16px}
+  .card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--text-dark);margin-bottom:14px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .ph{font-size:13px;color:var(--stone);font-style:italic;line-height:1.7;background:var(--cream-dark);border-radius:8px;padding:12px 14px}
+  .friend-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .friend-pill{display:inline-flex;align-items:center;gap:8px;background:var(--cream-dark);border:1px solid var(--stone-light);border-radius:24px;padding:6px 14px 6px 8px;font-size:13px;font-weight:600;color:#3a5c3c}
+  .friend-av{width:24px;height:24px;border-radius:50%;background:#e8f5e9;color:#2d5230;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+  .schedule{width:100%;border-collapse:collapse;font-size:13px}
+  .schedule tr{border-bottom:1px solid var(--stone-light)}
+  .schedule tr:last-child{border-bottom:none}
+  .schedule td{padding:9px 4px}
+  .schedule td:first-child{color:var(--stone);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;width:80px}
+  .schedule td:last-child{color:#4a4a3a;font-weight:600}
+  .track{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--stone-light)}
+  .track:last-child{border-bottom:none}
+  .track-n{font-size:11px;color:var(--stone);min-width:18px;text-align:center}
+  .track-disc{width:32px;height:32px;border-radius:50%;background:var(--green-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .track-disc::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--green-pale)}
+  .track-info{flex:1}
+  .track-title{font-size:13px;font-weight:700;color:var(--text-dark)}
+  .track-artist{font-size:12px;color:var(--stone)}
+  .hardship{border-radius:12px;padding:16px 18px;margin-bottom:12px;border-left:4px solid #4a7c4e;background:#f0f7f0}
+  .hardship:last-child{margin-bottom:0}
+  .hardship-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;color:#2d5230}
+  .hardship-text{font-size:13px;line-height:1.7;color:#3a5c3c}
+  footer{background:var(--green-dark);text-align:center;padding:28px;font-size:12px;color:rgba(200,230,201,0.4);letter-spacing:1px}
+  footer span{color:rgba(200,230,201,0.7)}
+  @media(max-width:600px){.two-col{grid-template-columns:1fr}.page-body{padding:28px 16px 60px}.hero{padding:48px 20px 40px}nav{padding:0 14px}.nav-brand{font-size:13px}.nav-links a{padding:14px 10px;font-size:12px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">Sergio · Hart HS</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="freshman.html" class="active">Freshman</a></li>
+    <li><a href="sophomore.html">Sophomore</a></li>
+    <li><a href="junior.html">Junior</a></li>
+    <li><a href="senior.html">Senior</a></li>
+    <li><a href="legacy.html">Legacy</a></li>
+  </ul>
+</nav>
+<div class="hero">
+  <div class="hero-eyebrow">Freshman Year · 2022 – 2023</div>
+  <h1>Finding <em>my footing</em></h1>
+  <p class="hero-sub">New school, new people — the year it all began</p>
+</div>
+<div class="page-body">
+
+  <div class="two-col" style="margin-bottom:16px">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title">Friend group</div>
+      <div class="friend-group">
+        <span class="friend-pill"><span class="friend-av">?</span> [ Friend 1 ]</span>
+        <span class="friend-pill"><span class="friend-av">?</span> [ Friend 2 ]</span>
+        <span class="friend-pill"><span class="friend-av">?</span> [ Friend 3 ]</span>
+        <span class="friend-pill"><span class="friend-av">+</span> Add more </span>
+      </div>
+      <p class="ph">[ Who were your people freshman year? Replace the names above and add as many as you'd like. ]</p>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title">Class schedule</div>
+      <table class="schedule">
+        <tr><td>Period 1</td><td>[ Class name ]</td></tr>
+        <tr><td>Period 2</td><td>[ Class name ]</td></tr>
+        <tr><td>Period 3</td><td>[ Class name ]</td></tr>
+        <tr><td>Period 4</td><td>[ Class name ]</td></tr>
+        <tr><td>Period 5</td><td>[ Class name ]</td></tr>
+        <tr><td>Period 6</td><td>[ Class name ]</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec-label">Playlist</div>
+  <div class="card">
+    <div class="card-title">Freshman year playlist</div>
+    <div class="track"><span class="track-n">1</span><div class="track-disc"></div><div class="track-info"><div class="track-title">[ Song title ]</div><div class="track-artist">[ Artist ]</div></div></div>
+    <div class="track"><span class="track-n">2</span><div class="track-disc"></div><div class="track-info"><div class="track-title">[ Song title ]</div><div class="track-artist">[ Artist ]</div></div></div>
+    <div class="track"><span class="track-n">3</span><div class="track-disc"></div><div class="track-info"><div class="track-title">[ Song title ]</div><div class="track-artist">[ Artist ]</div></div></div>
+    <div class="track"><span class="track-n">4</span><div class="track-disc"></div><div class="track-info"><div class="track-title">[ Song title ]</div><div class="track-artist">[ Artist ]</div></div></div>
+    <div class="track"><span class="track-n">5</span><div class="track-disc"></div><div class="track-info"><div class="track-title">[ Song title ]</div><div class="track-artist">[ Artist ]</div></div></div>
+  </div>
+
+  <div class="sec-label">Hardships &amp; growth</div>
+  <div class="card">
+    <div class="hardship">
+      <div class="hardship-label">Challenge I faced</div>
+      <div class="hardship-text">[ What was hard about freshman year? What tested you? ]</div>
+    </div>
+    <div class="hardship">
+      <div class="hardship-label">How I grew</div>
+      <div class="hardship-text">[ What came out of it? What did you figure out about yourself? ]</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Memories &amp; moments</div>
+  <div class="card">
+    <div class="card-title">Things I want to remember</div>
+    <p class="ph">[ Add any extra memories, photos, quotes, or moments from freshman year here. Bullet points, paragraphs, anything goes. ]</p>
+  </div>
+
+</div>
+<footer>Sergio David Garcia Calderon · Hart High School · <span>Class of 2026</span></footer>
+</body>
+</html>
